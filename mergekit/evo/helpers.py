@@ -27,6 +27,7 @@ import ray
 import ray.util.queue
 import ray.util.scheduling_strategies
 import torch
+import numpy as np
 
 from mergekit.evo.config import TaskConfiguration
 from mergekit.evo.genome import InvalidGenotypeError, ModelGenome
@@ -55,7 +56,7 @@ def _eval_model(
     logging.info(results["results"])
     res = 0
     for task in tasks:
-        res += results["results"][task.name][task.metric] * task.weight
+        res += results["results"][task.name][task.metric] * np.cos((1/24) * task.weight * np.PI)
     return {"score": res, "results": results["results"]}
 
 
