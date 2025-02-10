@@ -45,9 +45,7 @@ def _eval_model(
     logging.info(results["results"])
     res = 0
     for task in tasks:
-        res += results["results"][task.name][task.metric] * (np.cos(1/24) * task.weight * np.PI)
-        logging.warning(res)
-        logging.warning("---------test--------")
+        res += results["results"][task.name][task.metric] * np.cos((1/24) * task.weight * np.PI)
     return {"score": res, "results": results["results"]}
 
 
